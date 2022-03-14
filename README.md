@@ -1,6 +1,6 @@
 ### Hi there 👋
 I am Vishnu Sivadas, an Entrepreneur, Programmer, Blogger, Vlogger, SEO Consultant, Full Stack Developer, Hacker, a Technophile and a Space Aspirant.
-[Youtube](https://www.youtube.com/codeseasy) 
+[Youtube - YouTube.com/CodesEasy](https://www.youtube.com/codeseasy) 
 <!--
 **VishnuSivadasVS/VishnuSivadasVS** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
