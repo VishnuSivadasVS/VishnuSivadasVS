@@ -8,16 +8,16 @@ Founder of [Codes Easy](https://www.codeseasy.com/) — coding made easy.
 
 ### Products & Tools
 
-- [**Codes Easy**](https://www.codeseasy.com/) — Software products, custom development, and programming education for developers at every level.
-- [**DevKit**](https://devkit.to/) — A complete PHP development environment — PHP, MariaDB, Nginx, Redis, Composer, and phpMyAdmin bundled into a single install.
-- [**xpos.dev**](https://xpos.dev/) — Instant SSH tunneling to expose localhost to the internet. One command, zero config.
-- [**shorter.sh**](https://shorter.sh/) — A fast URL shortener with API access and click analytics. Clean, simple, developer-friendly.
+- [**Codes Easy**](https://www.codeseasy.com/) — Software products, custom development, and programming education.
+- [**DevKit**](https://devkit.to/) — All-in-one PHP dev environment with Nginx, MariaDB, Redis, and more.
+- [**xpos.dev**](https://xpos.dev/) — Expose localhost to the internet. One command, zero config.
+- [**shorter.sh**](https://shorter.sh/) — Fast URL shortener with API access and click analytics.
 
 ---
 
 ### Areas of Expertise
 
-`Developer Tooling` · `SaaS Architecture` · `Distributed Backend Systems` · `Infrastructure & DevOps` · `Product Engineering` · `API Design`
+`Developer Tooling` · `SaaS Architecture` · `Backend Systems` · `DevOps` · `Product Engineering`
 
 ---
 
