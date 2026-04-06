@@ -1,0 +1,193 @@
+@import "tailwindcss";
+
+@theme {
+  --breakpoint-xs: 480px;
+  --color-bg: #050505;
+  --color-card: #0a0a0a;
+  --color-card-hover: #0f0f0f;
+  --color-border: #181818;
+  --color-border-hover: #2a2a2a;
+  --color-text: #ededed;
+  --color-text-sec: #a0a0a0;
+  --color-text-muted: #555;
+  --color-accent: #6e9fff;
+  --color-accent-dim: rgba(110,159,255,.08);
+  --font-dm: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'SF Mono', 'Fira Code', 'Cascadia Code', Menlo, Consolas, monospace;
+}
+
+/* ── Noise texture overlay ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: .035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+/* ── Dot-grid mask ── */
+.hero-grid {
+  background-image: radial-gradient(circle, rgba(255,255,255,.05) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: radial-gradient(ellipse 60% 50% at 50% 50%, black 20%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 60% 50% at 50% 50%, black 20%, transparent 100%);
+}
+
+/* ── Hero gradient orb ── */
+.hero-orb {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 400px;
+  background: radial-gradient(ellipse, rgba(110,159,255,.06) 0%, rgba(110,159,255,.02) 40%, transparent 70%);
+  pointer-events: none;
+  animation: orbPulse 8s ease-in-out infinite;
+}
+@media (max-width: 640px) {
+  .hero-orb { width: 100vw; height: 60vw; }
+}
+
+/* ── Keyframes ── */
+@keyframes heroIn { to { opacity: 1; transform: translateY(0); } }
+@keyframes scrollPulse {
+  0%, 100% { opacity: .3; transform: translateY(0); }
+  50% { opacity: 1; transform: translateY(6px); }
+}
+@keyframes orbPulse {
+  0%, 100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: .7; transform: translate(-50%, -50%) scale(1.08); }
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+@keyframes statusPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: .4; }
+}
+
+/* ── Reveal system ── */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: .08s; }
+.reveal-delay-2 { transition-delay: .16s; }
+.reveal-delay-3 { transition-delay: .24s; }
+.reveal-delay-4 { transition-delay: .32s; }
+.reveal-delay-5 { transition-delay: .4s; }
+
+/* ── Hero entrance ── */
+.hero-reveal { opacity: 0; transform: translateY(20px); animation: heroIn .8s cubic-bezier(.16,1,.3,1) forwards; }
+.hero-reveal-1 { animation-delay: .1s; }
+.hero-reveal-2 { animation-delay: .2s; }
+.hero-reveal-3 { animation-delay: .35s; }
+.hero-reveal-4 { animation-delay: .5s; }
+.hero-reveal-5 { animation-delay: .65s; }
+
+/* ── JS-driven state classes ── */
+nav.scrolled { background: rgba(5,5,5,.85); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom-color: #181818; }
+.nav-toggle.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.nav-toggle.open span:nth-child(2) { opacity: 0; }
+.nav-toggle.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+.mobile-menu { visibility: hidden; opacity: 0; pointer-events: none; }
+.mobile-menu.open { visibility: visible; opacity: 1; pointer-events: auto; }
+.hero-scroll-dot { animation: scrollPulse 2s ease-in-out infinite; }
+
+/* ── Section gradient divider ── */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(110,159,255,.15) 30%, rgba(110,159,255,.15) 70%, transparent);
+}
+
+/* ── Product card gradient border on hover ── */
+.product-card {
+  position: relative;
+  background: var(--color-card);
+  transition: all .35s cubic-bezier(.16,1,.3,1);
+}
+.product-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, transparent, transparent);
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  -webkit-mask-composite: xor;
+  transition: background .4s ease;
+  pointer-events: none;
+}
+.product-card:hover::before {
+  background: linear-gradient(135deg, rgba(110,159,255,.25), rgba(110,159,255,.05) 50%, rgba(110,159,255,.15));
+}
+.product-card:hover {
+  background: var(--color-card-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 40px rgba(0,0,0,.3), 0 0 60px rgba(110,159,255,.03);
+}
+
+/* ── Skill pill hover ── */
+.skill-pill {
+  transition: all .2s ease;
+}
+.skill-pill:hover {
+  border-color: rgba(110,159,255,.3);
+  color: var(--color-text);
+  background: rgba(110,159,255,.04);
+}
+
+/* ── Connect link hover ── */
+.connect-link {
+  transition: all .3s cubic-bezier(.16,1,.3,1);
+}
+.connect-link:hover {
+  border-color: var(--color-border-hover);
+  background: rgba(255,255,255,.02);
+  transform: translateX(4px);
+}
+
+/* ── Status badge ── */
+.status-dot {
+  animation: statusPulse 2s ease-in-out infinite;
+}
+
+/* ── Focus pill accent on hover ── */
+.focus-pill:hover {
+  border-color: rgba(110,159,255,.3);
+  color: var(--color-text);
+  background: rgba(110,159,255,.04);
+}
+
+/* ── Photo ring glow ── */
+.photo-ring {
+  position: relative;
+}
+.photo-ring::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(110,159,255,.2), transparent 60%);
+  z-index: -1;
+  opacity: 0;
+  transition: opacity .4s ease;
+}
+.photo-ring:hover::after {
+  opacity: 1;
+}
+
+/* ── Smooth scrollbar ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--color-bg); }
+::-webkit-scrollbar-thumb { background: #222; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #333; }
+
+/* ── Selection color ── */
+::selection { background: rgba(110,159,255,.2); color: #fff; }

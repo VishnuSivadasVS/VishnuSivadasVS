@@ -1,0 +1,19 @@
+{
+  "name": "vishnusivadas.com",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx @tailwindcss/cli -i input.css -o assets/css/output.css --minify",
+    "deploy": "npm run build && npx wrangler pages deploy . --project-name=vishnusivadas"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.2.2",
+    "tailwindcss": "^4.2.2",
+    "wrangler": "^4.80.0"
+  }
+}
